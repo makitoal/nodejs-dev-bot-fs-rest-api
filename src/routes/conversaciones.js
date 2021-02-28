@@ -2,21 +2,20 @@
 /*
     En esta sección se tiene los métodos del API para registro de conversaciones
 */
-const admin = require('firebase-admin');
 const { Router } = require("express");
 const router = Router();
 
 // INVOCANDO A METODOS DE BD
 const db = require('../db/db_fs');
-const dbFieldValue = admin.firestore.FieldValue;
+//const dbFieldValue = admin.firestore.FieldValue;
 
 // POST NUEVAS CONVERSACIONES
 router.post("/conversaciones", async (req, res) => {
   console.log('RUTAS DESDE CONVERSACIONES -> REGISTRA CONVERSACIONES');
   try {
       let IdConv=req.body.idconv; 
-      //let startTimeConv = new Date().toISOString();
-      let startTimeConv = dbFieldValue.serverTimestamp();
+      let startTimeConv = new Date().toISOString();
+      //let startTimeConv = dbFieldValue.serverTimestamp();
       console.log('ID CONVERSACION -> ' + IdConv);
 
       if (IdConv ==="" || IdConv === null) {
@@ -50,8 +49,8 @@ router.put("/conversaciones", async (req, res)=>{
   try {
 
     let IdConv=req.body.idconv; 
-    //let endTimeConv = new Date().toISOString();
-    let endTimeConv = dbFieldValue.serverTimestamp();
+    let endTimeConv = new Date().toISOString();
+    //let endTimeConv = dbFieldValue.serverTimestamp();
     console.log('ID CONVERSACION PARA UPDATE -> ' + IdConv);
 
     if (IdConv !== "" || IdConv != null) {
@@ -60,8 +59,9 @@ router.put("/conversaciones", async (req, res)=>{
         const query = await db.collection("conversaciones").doc(IdConv).update({
             endtime: endTimeConv
         });
-        console.log('ID CONVERSACION UPDATE -> ' + IdConv);
-        return res.status(200).json(query.id);
+        //IdConv=query.IdConv;
+        console.log('ID CONVERSACION UPDATE -> ', IdConv);
+        return res.status(200).json({IDConversacion: IdConv});
 
     }
   } 
@@ -178,8 +178,7 @@ router.get("/conversaciones/chat/:idconv", (req, res) => {
 // FUNCION saveNewChat
 async function saveNewChat (req, IdConv){
   
-  //let HoraIniConv = new Date().toISOString();
-  let startHourChat = dbFieldValue.serverTimestamp();
+  let startHourChat = new Date().toISOString();
   console.log('CONVERSACION CON ID PARA CHAT-> ', IdConv);
 
   try {
