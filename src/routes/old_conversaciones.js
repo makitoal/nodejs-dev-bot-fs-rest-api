@@ -6,7 +6,7 @@ const { Router } = require("express");
 const router = Router();
 
 // INVOCANDO A METODOS DE BD
-const db = require('../db/db_fs');
+const db = require("../db/db_fs");
 //const dbFieldValue = admin.firestore.FieldValue;
 
 // POST NUEVAS CONVERSACIONES

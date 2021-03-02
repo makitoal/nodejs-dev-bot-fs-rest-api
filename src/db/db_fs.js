@@ -4,7 +4,7 @@
 const admin = require("firebase-admin");
 
 // CONFIGURANDO ACCESO A FIRESTORE
-const serviceAccount = require('./config-db.json');
+const serviceAccount = require("./config-db-fs.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });

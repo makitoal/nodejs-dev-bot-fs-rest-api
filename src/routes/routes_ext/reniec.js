@@ -1,5 +1,5 @@
 'use strict'
-const reniecCtrl = require('../../apis/reniec');
+const reniecCtrl = require("../../apis/reniec");
 const { Router } = require("express");
 const router = Router();
 

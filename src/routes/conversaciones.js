@@ -1,6 +1,6 @@
 'use strict'
 
-const conversacionesCtrl = require('../controllers/conversaciones');
+const conversacionesCtrl = require("../controllers/conversaciones_Ctrl");
 
 const { Router } = require("express");
 const router = Router();
